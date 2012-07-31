@@ -6,8 +6,8 @@ import sys
 import os
 import urwid
 import requests
-import stream
-from download import download
+from soundcloud_player import vlc
+from soundcloud_player.soundcloud_player import SoundCloudPlayer
 
 class ItemWidget (urwid.WidgetWrap):
 
@@ -47,17 +47,26 @@ class SoundCloud:
 
 
 	def play(self, url):
-		os.system('./stream/__main__.py %s' %url)
+		playlist = []
+		try:
+			r = requests.get(url)
+			playlist.append(r.url)
+			SoundCloudPlayer(playlist)
+		except Exception as e:
+			print e
+
+
+		#os.system('./stream/__main__.py %s' %url)
 
 	def download(self, url, title):
 		try:
 			print '\nDownloading: %s' %title
-			download.download(url)
-		except download.ReturnUrl as url:
 			r = requests.get(str(url))
 			with open('%s.mp3' % title, 'wb')  as code:
 				code.write(r.content)
 			print('\nDownload Complete: %s.mp3' % title)
+		except Exception as e:
+			print e
 
 
 	def initGui(self):
