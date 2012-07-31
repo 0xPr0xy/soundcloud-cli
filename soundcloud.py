@@ -6,7 +6,6 @@ import sys
 import os
 import urwid
 import requests
-from soundcloud_player import vlc
 from soundcloud_player.soundcloud_player import SoundCloudPlayer
 
 class ItemWidget (urwid.WidgetWrap):
