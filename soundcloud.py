@@ -5,18 +5,20 @@ import soundcloud
 import sys
 import os
 import urwid
-
+import requests
+import stream
+from download import download
 
 class ItemWidget (urwid.WidgetWrap):
 
 	def __init__ (self, entry, url):
 		""" Creates UI Element for every Entry"""
-
 		if entry is not None:
+			self._selectable = entry
 			self.content = url.url
 			self.item = [
 				urwid.Padding(urwid.AttrWrap(
-				urwid.Text('%s' % ( entry)),  'body', 'focus')),
+				urwid.Text('%s' % entry),  'body', 'focus')),
 			]
 		w = urwid.Columns(self.item)
 		self.__super.__init__(w)
@@ -45,7 +47,18 @@ class SoundCloud:
 
 
 	def play(self, url):
-		os.system('./youtube_dl/__main__.py %s' % url)
+		os.system('./stream/__main__.py %s' %url)
+
+	def download(self, url, title):
+		try:
+			print '\nDownloading: %s' %title
+			download.download(url)
+		except download.ReturnUrl as url:
+			r = requests.get(str(url))
+			with open('%s.mp3' % title, 'wb')  as code:
+				code.write(r.content)
+			print('\nDownload Complete: %s.mp3' % title)
+
 
 	def initGui(self):
 		self.listbox = urwid.ListBox(urwid.SimpleListWalker(self.playlist))
@@ -83,7 +96,14 @@ class SoundCloud:
 				print('listbox get_focus failed:\nError: %s' % e)
 			self.play(self.focus)
 
-
+		if input is ' ':
+			title = self.listbox.get_focus()[0]._selectable
+			try:
+				self.focus = self.listbox.get_focus()[0].content
+			except Exception as e:
+				print('listbox get_focus failed:\nError: %s' % e)
+			self.download(self.focus, title)
+			
 
 if len(sys.argv) == 3 and sys.argv[2] == 'track': instance = SoundCloud(sys.argv[1], True, False)
 if len(sys.argv) == 3 and sys.argv[2] == 'playlist': instance = SoundCloud(sys.argv[1], False, True)

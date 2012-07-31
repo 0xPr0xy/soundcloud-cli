@@ -15,6 +15,7 @@ Commands:
 Controls:
 ---------
 Enter = Stream
+SPACE = Download
 Q = Quit
 
 

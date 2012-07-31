@@ -4,12 +4,12 @@ import vlc
 import os
 import sys
 
-newpath = '%s/../' % sys.path[0] 
-sys.path.append(newpath)
+# close you eyes 
+sys.path.append('%s/../' % sys.path[0] )
 
 import urwid
 
-class YoutubePlayer:
+class SoundCloudPlayer:
 	
 	
 	def __init__(self, playlist):
@@ -20,7 +20,7 @@ class YoutubePlayer:
 			('bg', '', '', '', '', '#666'),
 		]
 		name = os.getlogin() or None
-		txt = urwid.Text(('banner', u"Hi %s!\n\n0xPr0xy Soundcloud Player!" %name), align='center')
+		txt = urwid.Text(('banner', u"Welcome %s!\n\n0xPr0xy Soundcloud Player!" %name), align='center')
 		map1 = urwid.AttrMap(txt, 'streak')
 		fill = urwid.Filler(map1)
 		self.map2 = urwid.AttrMap(fill, 'bg')
