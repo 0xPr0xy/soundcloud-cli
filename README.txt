@@ -10,7 +10,7 @@ Python 2.6+
 Commands:
 ---------
 ./soundcloud.py 'artist' track
-./soundcloud.py 'artist-track' playlist
+./soundcloud.py 'artist-album' playlist
 
 Controls:
 ---------
