@@ -9,9 +9,8 @@ Python 2.6+
 
 Commands:
 ---------
-./soundcloud.py 'query' track
-./soundcloud.py 'artist' playlist
-
+./soundcloud.py 'artist' track
+./soundcloud.py 'artist-track' playlist
 
 Controls:
 ---------
@@ -22,3 +21,5 @@ Q = Quit
 Enjoy!
 
 0xPr0xy
+
+
