@@ -1,4 +1,4 @@
-This is a soundcloud client for the command line that supports searching and streaming soundcloud video's from the command line.
+This is a soundcloud client for the command line that supports searching and streaming soundcloud songs from the command line.
 
 
 Requirements:
