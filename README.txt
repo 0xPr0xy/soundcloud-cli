@@ -1,0 +1,24 @@
+This is a soundcloud client for the command line that supports searching and streaming youtube video's from the command line.
+
+
+Requirements:
+--------------
+VLC media player
+Python 2.6+
+
+
+Commands:
+---------
+./soundcloud.py 'query' track
+./soundcloud.py 'artist' playlist
+
+
+Controls:
+---------
+Enter = Stream
+Q = Quit
+
+
+Enjoy!
+
+0xPr0xy
